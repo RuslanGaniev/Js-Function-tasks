@@ -3,15 +3,16 @@
 // Возведите число в 4-тую степень с помощью ggg.
 
 let num = 2;
+let cub = 4
 
 function ggg(num, callback) {
-  return callback(callback(num));
+  return callback(num, cub);
 }
 
-let result = ggg(num, function(num) {
-  return num * num;
-});
+function callback(num, cub) {
+	return num ** cub
+}
 
-console.log(result); 
+console.log(ggg(num, callback));
 
 

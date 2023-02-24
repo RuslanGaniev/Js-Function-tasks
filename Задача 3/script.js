@@ -1,11 +1,14 @@
 // Если переменная a больше нуля - то в ggg запишем функцию, которая выводит один !, 
 // иначе запишем функцию, которая выводит два !.
 
-function ggg(a) {
+const a = 5;
 	if (a > 0) {
+		ggg = function() {
 		console.log('!');
-	} else {
-		console.log('!!');
+	}
+	}	else {
+	ggg = function() {
+	console.log('!!');
 	}
 }
-console.log(ggg(2))
+ggg();

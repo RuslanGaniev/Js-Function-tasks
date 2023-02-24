@@ -5,27 +5,55 @@
 // Выводится номер подъезда, в котором находится указанная квартира. 
 // При вводе некорректных данных предусмотреть генерацию исключительных ситуаций.
 
-let floors = Number(prompt("Введите количество этажей (1-25):"));
-let entrances = Number(prompt("Введите количество подъездов (1-10):"));
-let flatsPerFloor = Number(prompt("Введите количество квартир на лестничной площадке (1-20):"));
+const MAX_FLOORS = 25;
+const MAX_ENTRANCES = 10;
+const MAX_FLATS = 20;
 
-// Проверка на корректность введенных данных
-if (floors < 1 || floors > 25 || entrances < 1 || entrances > 10 || flatsPerFloor < 1 || flatsPerFloor > 20) {
-  throw new Error("Некорректные данные");
+function getFloors() {
+let floors = prompt(`Введите этажность дома (от 1 до ${MAX_FLOORS}):`);
+if (floors < 1 || floors > MAX_FLOORS || isNaN(floors)) {
+alert('Некорректное значение этажности!');
+return getFloors(); 
+}
+return floors;
 }
 
-let flatNumber = Number(prompt("Введите номер квартиры (1-" + floors * entrances * flatsPerFloor + "):"));
-
-// Проверка на корректность введенного номера квартиры
-if (flatNumber < 1 || flatNumber > floors * entrances * flatsPerFloor) {
-  throw new Error("Некорректный номер квартиры");
+function getEntrances() {
+let entrances = prompt(`Введите число подъездов (от 1 до ${MAX_ENTRANCES}):`);
+if (entrances < 1 || entrances > MAX_ENTRANCES || isNaN(entrances)) {
+alert('Некорректное значение числа подъездов!');
+return getEntrances();
+}
+return entrances;
 }
 
-// Рассчитываем номер подъезда, в котором находится указанная квартира
-let flatsPerEntrance = flatsPerFloor * floors;
-let entranceNumber = Math.ceil(flatNumber / flatsPerEntrance);
+function getFlats() {
+let flats = prompt(`Введите количество квартир на лестничной площадке (от 1 до ${MAX_FLATS}):`);
+if (flats < 1 || flats > MAX_FLATS || isNaN(flats)) {
+alert('Некорректное значение количества квартир на лестничной площадке!');
+return getFlats(); 
+}
+return flats;
+}
 
+function getFlatNumber(maxFlatNumber) {
+let flatNumber = prompt(`Введите номер квартиры (от 1 до ${maxFlatNumber}):`);
+if (flatNumber < 1 || flatNumber > maxFlatNumber || isNaN(flatNumber)) {
+alert('Некорректный номер квартиры!');
+return getFlatNumber(maxFlatNumber); 
+}
+return flatNumber;
+}
 
-alert("Квартира " + flatNumber + " находится в подъезде " + entranceNumber);
+function findEntrance() {
+let floors = getFloors();
+let entrances = getEntrances();
+let flats = getFlats();
+let maxFlatNumber = floors * entrances * flats;
+let flatNumber = getFlatNumber(maxFlatNumber);
 
+let entranceNumber = Math.ceil(flatNumber / (flats * floors));
+alert(`Квартира находится в ${entranceNumber} подъезде`);
+}
 
+findEntrance();

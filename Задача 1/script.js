@@ -4,17 +4,9 @@
 // Если одно из чисел чётное, а второе нечётное - функция возвращает это нечётное число.
 
 function processNumbers(a, b) {
-	if (a % 2 === 0 && b % 2 === 0) {  // оба числа четные
-		return a * b;
-} else if (a % 2 === 1 && b % 2 === 1) {  // оба числа нечетные
-	return a + b;
-} else {  // одно число четное, а другое нечетное
-	if (a % 2 === 0) {
-			return b;
-	} else {
-			return a;
-		}
+	if (a % 2 === 0 && b % 2 === 0) return a * b;
+	if (a % 2 === 1 && b % 2 === 1) return a + b;
+	return a % 2 === 0 ? b : a;
 	}
-}
 
 console.log(result = processNumbers(2,7))

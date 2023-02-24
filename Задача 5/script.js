@@ -5,17 +5,14 @@
 // Пусть функция ggg вернет сумму квадрата и куба числа
 
 // выводит в квадтрат
-function kvadrat(n) { 
-	return n * n;
-}
-// выводит в куб
-function kub(n) {
-	return n * n * n;
-}
+let ggg = function(a, b, c){
+	return b(a) + c(a);};
 
-function ggg(num, func1, func2) {
-	return (func1(num) + func2(num));
-}
+	let kvadrat = function(n){
+	return Math.pow(n, 2)};
+
+	let cub = function(n){
+	return Math.pow(n, 3)};
 
 
-console.log(ggg(7,kvadrat, kub));
+	console.log(ggg(4, kvadrat, cub));
